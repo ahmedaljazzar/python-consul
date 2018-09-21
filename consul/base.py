@@ -806,6 +806,20 @@ class Consul(object):
             return self.agent.http.put(
                 CB.bool(), '/v1/agent/force-leave/%s' % node)
 
+        def leave(self):
+            """
+            This endpoint instructs the agent to force a node into the left
+            state. If a node fails unexpectedly, then it will be in a failed
+            state. Once in the failed state, Consul will attempt to reconnect,
+            and the services and checks belonging to that node will not be
+            cleaned up. Forcing a node into the left state allows its old
+            entries to be removed.
+
+            *node* is the node to change state for.
+            """
+
+            return self.agent.http.put(CB.bool(), '/v1/agent/leave/')
+
         class Service(object):
             def __init__(self, agent):
                 self.agent = agent
