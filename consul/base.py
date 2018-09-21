@@ -819,7 +819,7 @@ class Consul(object):
             """
 
             return self.agent.http.put(
-                CB.bool(), '/v1/agent/force-leave/')
+                CB.bool(), '/v1/agent/leave/')
 
         class Service(object):
             def __init__(self, agent):
